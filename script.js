@@ -11,7 +11,13 @@ const board = document.getElementById('board');
 const winningMessageElement = document.getElementById('winningMessage');
 const restartButton = document.getElementById('restartButton');
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]');
+const playerXScoreElement = document.getElementById('playerXScore');
+const playerOScoreElement = document.getElementById('playerOScore');
+const drawScoreElement = document.getElementById('drawScore');
 let circleTurn;
+let playerXScore = 0;
+let playerOScore = 0;
+let drawScore = 0;
 
 startGame();
 
@@ -32,10 +38,20 @@ function handleClick(e) {
   const cell = e.target;
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
   placeMark(cell, currentClass);
-  if (checkWin(currentClass)) endGame(false);
-  else if ([...cells].every(cell => cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS)))
+  if (checkWin(currentClass)) {
+    endGame(false);
+    if (currentClass === X_CLASS) {
+      playerXScore++;
+      playerXScoreElement.textContent = `Player X: ${playerXScore}`;
+    } else {
+      playerOScore++;
+      playerOScoreElement.textContent = `Player O: ${playerOScore}`;
+    }
+  } else if ([...cells].every(cell => cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS))) {
     endGame(true);
-  else {
+    drawScore++;
+    drawScoreElement.textContent = `Draw: ${drawScore}`;
+  } else {
     circleTurn = !circleTurn;
     setBoardHoverClass();
   }
