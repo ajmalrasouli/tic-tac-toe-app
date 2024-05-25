@@ -2,6 +2,8 @@
 
 A simple, interactive Tic Tac Toe game built with HTML, CSS, and JavaScript.
 
+Site is live on: https://ajmalrasouli.github.io/github-actions-demo/
+
 ## Table of Contents
 - [Project Description](#project-description)
 - [Features](#features)
@@ -30,6 +32,11 @@ This Tic Tac Toe game allows two players to play against each other. The game in
    git clone https://github.com/your-username/tic-tac-toe.git
    cd tic-tac-toe
 
+Running the Game
+To run the game locally, open the index.html file in your web browser:
 
 
+```sh
+open index.html
+```
 

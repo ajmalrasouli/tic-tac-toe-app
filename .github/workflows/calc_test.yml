@@ -17,4 +17,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: . # This should be the directory where your HTML/CSS/JS files are located
+          publish_branch: main
+          publish_dir: build # Adjust this if your build output is in a different directory
