@@ -144,3 +144,62 @@
   .winning-message.show {
     display: flex;
   }
+  
+  /* Main container */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Title */
+.title {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+/* Game board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+}
+
+/* Cells */
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+/* Rules section */
+.rules {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Rules heading */
+.rules h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* Rules list */
+.rules ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Rules list items */
+.rules li {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
