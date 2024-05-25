@@ -19,7 +19,7 @@ This Tic Tac Toe game allows two players to play against each other. The game in
 - Winning message display
 - Restart game functionality
 
-## Setup Instructions
+## Setup Instruction
 
 ### Prerequisites
 - Node.js and npm installed on your system
