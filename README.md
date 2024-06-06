@@ -10,7 +10,9 @@ Site is live on: https://rasoulitech.uk/
 - [Project Structure](#project-structure)
 - [How to Dockerize this app](#how-to-dockerize-this-app)
 - [Prerequisites](#prerequisites)
+- [Deploy on AWS ECR](#deploy)
 - [License](#license)
+
 
 ## Project Description
 This Tic Tac Toe game allows two players to play against each other. The game interface is user-friendly and displays the game board, player turns, and the game result (win or draw).
@@ -156,6 +158,182 @@ http://localhost:8080
 ```
 You should see your Tic-Tac-Toe application running.
 
+## Deploy on AWS ECR
+### Deploying Tic-Tac-Toe application using Docker, AWS ECR, and AWS App Runner. The guide includes instructions for downloading the AWS CLI, configuring it, pushing your Docker image to AWS ECR, and deploying it with AWS App Runner.
+
+## Step-by-Step Guide
+1. Download and Install AWS CLI v2
+Follow the instructions to download and install the AWS CLI v2 from the official AWS documentation.
+
+2. Configure AWS CLI
+Configure the AWS CLI with your credentials:
+
+```sh
+aws configure
+```
+
+Enter your access key ID and secret access key when prompted:
+
+```mathematica
+AWS Access Key ID [None]: GYREDWYJKDSCTPTTNWS
+AWS Secret Access Key [None]: XXsdscxczSSSSSzxzxzxSSSSzxzxzx
+Default region name [None]: us-wesr-1
+Default output format [None]: json
+```
+
+3. Push Docker Image to AWS ECR
+   1. Authenticate Docker to your Amazon ECR registry:
+         ```sh
+         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 804789588521.dkr.ecr.us-east-1.amazonaws.com
+         ```
+
+   2. Build your Docker image:
+         ```sh
+         docker build -t tictactoe .
+         ```
+   3. Tag your Docker image:
+         ```sh
+         docker tag tictactoe:latest 804789588521.dkr.ecr.us-east-1.amazonaws.com/tictactoe:latest
+         ```
+   4. Push your Docker image to Amazon ECR:
+         ```sh
+         docker push 804789588521.dkr.ecr.us-east-1.amazonaws.com/tictactoe:latest
+         ```
+         
+4. Deploy with AWS App Runner
+Create a new service on AWS App Runner:
+
+   1. Open the AWS Management Console and navigate to AWS App Runner.
+   2. Create a new service:
+      * Select "Container registry".
+      * Choose "Amazon ECR".
+      * Click "Browse" and select the tictactoe image.
+      * Set "Deployment setting" to "Automatic".
+      * Create a new service role if prompted.
+        
+   3. Configure the services:
+      * Service name: tictactoe
+      * Virtual CPU: 1 vCPU
+      * Virtual memory: 2GB
+      * Port: 8080
+        
+   4. Create and deploy the service.
+      
+   After deployment, you can access your application at the provided URL:
+
+      ```arduino
+      https://vqydsibd8m.us-east-1.awsapprunner.com
+      ```
+   5. Update the Project and Redeploy
+
+   When you update your project in VSCode and need to redeploy, follow these steps:
+
+      1. Build your Docker image:
+         ```sh
+         docker build -t tictactoe .
+         ```
+      2. Tag your Docker image:
+         ```sh
+         docker tag tictactoe:latest 804789588521.dkr.ecr.us-east-1.amazonaws.com/tictactoe:latest
+         ```
+      3. Push your Docker image to Amazon ECR:
+         ```sh
+         docker push 804789588521.dkr.ecr.us-east-1.amazonaws.com/tictactoe:latest
+         ```
+      
+Here is a detailed guide for setting up and deploying your Tic-Tac-Toe application using Docker, AWS ECR, and AWS App Runner. The guide includes instructions for downloading the AWS CLI, configuring it, pushing your Docker image to AWS ECR, and deploying it with AWS App Runner.
+
+Step-by-Step Guide
+1. Download and Install AWS CLI v2
+Follow the instructions to download and install the AWS CLI v2 from the official AWS documentation.
+
+2. Configure AWS CLI
+Configure the AWS CLI with your credentials:
+
+bash
+Copy code
+aws configure
+Enter your access key ID and secret access key when prompted:
+
+mathematica
+Copy code
+AWS Access Key ID [None]: 
+AWS Secret Access Key [None]: 
+Default region name [None]: us-east-1
+Default output format [None]: json
+3. Push Docker Image to AWS ECR
+Authenticate Docker to your Amazon ECR registry:
+
+bash
+Copy code
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 804789588521.dkr.ecr.us-east-1.amazonaws.com
+Build your Docker image:
+
+bash
+Copy code
+docker build -t tictactoe .
+Tag your Docker image:
+
+bash
+Copy code
+docker tag tictactoe:latest 804789588521.dkr.ecr.us-east-1.amazonaws.com/tictactoe:latest
+Push your Docker image to Amazon ECR:
+
+bash
+Copy code
+docker push 804789588521.dkr.ecr.us-east-1.amazonaws.com/tictactoe:latest
+4. Deploy with AWS App Runner
+Create a new service on AWS App Runner:
+Open the AWS Management Console and navigate to AWS App Runner.
+
+Create a new service:
+
+Select "Container registry".
+Choose "Amazon ECR".
+Click "Browse" and select the tictactoe image.
+Set "Deployment setting" to "Automatic".
+Create a new service role if prompted.
+Configure the service:
+
+Service name: tictactoe
+Virtual CPU: 1 vCPU
+Virtual memory: 2GB
+Port: 8080
+Create and deploy the service.
+
+After deployment, you can access your application at the provided URL:
+
+arduino
+Copy code
+https://vqydsibd8m.us-east-1.awsapprunner.com
+5. Update the Project and Redeploy
+When you update your project in VSCode and need to redeploy, follow these steps:
+
+Build your Docker image:
+
+bash
+Copy code
+docker build -t tictactoe .
+Tag your Docker image:
+
+bash
+Copy code
+docker tag tictactoe:latest 804789588521.dkr.ecr.us-east-1.amazonaws.com/tictactoe:latest
+Push your Docker image to Amazon ECR:
+
+bash
+Copy code
+docker push 804789588521.dkr.ecr.us-east-1.amazonaws.com/tictactoe:latest
+
+AWS App Runner will automatically detect the new image and deploy it.
+         
+         
+# Summary
+By following these steps, you will be able to configure AWS CLI, push your Docker images to AWS ECR,
+and deploy your application using AWS App Runner. When you update your project, you can quickly
+rebuild and push the new image, and AWS App Runner will handle the deployment automatically. 
+
+   
 
 # License
 
