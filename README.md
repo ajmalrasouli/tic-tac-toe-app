@@ -1,6 +1,6 @@
 [![Deploy to GitHub Pages](https://github.com/ajmalrasouli/tic-tac-toe-app/actions/workflows/calc_test.yml/badge.svg)](https://github.com/ajmalrasouli/tic-tac-toe-app/actions/workflows/calc_test.yml)
 
-# Tic Tac Toe
+# Tic Tac Toe App
 
 A simple, interactive Tic Tac Toe game built with HTML, CSS, and JavaScript.
 
