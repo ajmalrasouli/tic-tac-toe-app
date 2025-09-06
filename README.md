@@ -4,7 +4,7 @@
 
 A simple, interactive Tic Tac Toe game built with HTML, CSS, and JavaScript.
 
-Site is live on: https://rasoulitech.uk/
+Site is live on: https://ajmalrasouli.github.io/tic-tac-toe-app/
 
 ## Table of Contents
 - [Project Description](#project-description)
